@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1023721337155",
+    "project_id": "notesql1te",
+    "storage_bucket": "notesql1te.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023721337155:android:55325c1674a36a6d5c7ff6",
+        "android_client_info": {
+          "package_name": "com.example.notessqlite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFy4ayPqIhOfjcKCM_errA3LIXidmRybE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
