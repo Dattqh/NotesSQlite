@@ -1,4 +1,4 @@
-package com.example.notessqlite
+package com.example.lab8
 
 import android.content.Context
 import android.content.Intent
@@ -10,9 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class NotesAdapter(private var notes: List<Note>, context: Context) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class NotesAdapter (private var notes: List<Note>, context: Context) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
-    private val db: NotesDatabaseHelper = NotesDatabaseHelper(context)
+    private val noteDao: NoteDAO = NoteDAO(context)
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
@@ -41,13 +41,9 @@ class NotesAdapter(private var notes: List<Note>, context: Context) : RecyclerVi
         }
 
         holder.deleteButton.setOnClickListener {
-            note.id?.toIntOrNull()?.let { id ->
-                db.deleteNote(id)
-                refreshData(db.getAllNotes())
-                Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_SHORT).show()
-            } ?: run {
-                Toast.makeText(holder.itemView.context, "Invalid Note ID", Toast.LENGTH_SHORT).show()
-            }
+            noteDao.deleteNote(note.id)
+            refreshData(noteDao.getAllNotes())
+            Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -55,4 +51,5 @@ class NotesAdapter(private var notes: List<Note>, context: Context) : RecyclerVi
         notes = newNotes
         notifyDataSetChanged()
     }
+
 }

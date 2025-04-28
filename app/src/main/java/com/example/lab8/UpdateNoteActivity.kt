@@ -1,25 +1,24 @@
-package com.example.notessqlite
+package com.example.lab8
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.notessqlite.databinding.ActivityUpdateNoteBinding
+import com.example.lab8.databinding.ActivityUpdateBinding
 
 class UpdateNoteActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityUpdateNoteBinding
-    private lateinit var db: NotesDatabaseHelper
+    private lateinit var binding: ActivityUpdateBinding
+    private lateinit var noteDao: NoteDAO
     private var noteId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityUpdateNoteBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
+        binding = ActivityUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = NotesDatabaseHelper(this)
+        noteDao = NoteDAO(this)
 
         noteId = intent.getIntExtra("note_id", -1)
         if (noteId == -1) {
@@ -27,15 +26,15 @@ class UpdateNoteActivity : AppCompatActivity() {
             return
         }
 
-        val note = db.getNoteByID(noteId)
+        val note = noteDao.getNoteById(noteId)
         binding.updateTitleEditText.setText(note.title)
-        binding.updateContentEditText.setText(note.content)
+        binding.updateContentEditText.setText(note.content )
 
         binding.updateSaveButton.setOnClickListener {
             val newTitle = binding.updateTitleEditText.text.toString()
             val newContent = binding.updateContentEditText.text.toString()
-            val updatedNote = Note(noteId.toString(), newTitle, newContent) // Chuyển Int sang String
-            db.updateNote(updatedNote)
+            val updateNote = Note(noteId, newTitle, newContent)
+            noteDao.updateNote(updateNote)
             finish()
             Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show()
         }

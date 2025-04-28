@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NotesSQLite"
+rootProject.name = "Lab8"
 include(":app")
+ 

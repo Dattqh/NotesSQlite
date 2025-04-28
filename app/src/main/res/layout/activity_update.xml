@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNoteActivity">
+    tools:context=".UpdateNoteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,17 +19,17 @@
             android:layout_height="wrap_content"
             android:paddingTop="20dp">
             <TextView
-                android:id="@+id/addNoteHeading"
+                android:id="@+id/editNoteHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Note"
+                android:text="Edit Note"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/saveButton"
+                android:id="@+id/updateSaveButton"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="4dp"
@@ -40,7 +40,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
-            android:id="@+id/titleEditText"
+            android:id="@+id/updateTitleEditText"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Enter the title"
@@ -51,7 +51,7 @@
             android:maxLines="1"/>
 
         <EditText
-            android:id="@+id/contentEditText"
+            android:id="@+id/updateContentEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"

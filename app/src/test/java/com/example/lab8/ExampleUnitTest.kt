@@ -1,4 +1,4 @@
-package com.example.notessqlite
+package com.example.lab8
 
 import org.junit.Test
 

@@ -1,30 +1,33 @@
-package com.example.notessqlite
+package com.example.lab8
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.notessqlite.databinding.ActivityAddNoteBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.lab8.databinding.ActivityAddNoteBinding
 
 class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding
-    private lateinit var db: NotesDatabaseHelper
+    private lateinit var db: NoteDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = NotesDatabaseHelper(this)
+        db = NoteDAO(this)
 
-        binding.saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener{
             val title = binding.titleEditText.text.toString()
             val content = binding.contentEditText.text.toString()
-            // Sửa lỗi: truyền id là null hoặc String
-            val note = Note(id = null, title = title, content = content)
+            val note = Note(0, title, content)
             db.insertNote(note)
             finish()
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
         }
     }
 }
